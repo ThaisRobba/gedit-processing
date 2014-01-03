@@ -9,6 +9,7 @@ A set of files and configurations to enable gedit as a Processing IDE.
 - Running a sketch straight from Gedit
 - Auto-Formatting
 - Snippet completion
+
 ---
 ###How do I install it?
 Information still pending.
