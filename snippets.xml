@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='utf-8'?>
+<snippets language="processing">
+  <snippet>
+    <text><![CDATA[arc($0);]]></text>
+    <tag>arc</tag>
+    <description>2D_primitives_arc</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[ellipse($0);]]></text>
+    <tag>ell</tag>
+    <description>2D_primitives_ellipse</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[line($0);]]></text>
+    <tag>lin</tag>
+    <description>2D_primitives_line</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[quad($0);]]></text>
+    <tag>qua</tag>
+    <description>2D_primitives_quad</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[rect($0);]]></text>
+    <tag>rec</tag>
+    <description>2D_primitives_rectangle</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[triangle($0);]]></text>
+    <tag>tri</tag>
+    <description>2D_primitives_triangle</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[background($0);]]></text>
+    <tag>bac</tag>
+    <description>color_background</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[fill($0);]]></text>
+    <tag>fil</tag>
+    <description>color_fill</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[noFill();]]></text>
+    <tag>nfil</tag>
+    <description>color_noFill</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[noStroke();]]></text>
+    <tag>nstr</tag>
+    <description>color_noStroke</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[stroke($0);]]></text>
+    <tag>str</tag>
+    <description>color_stroke</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[/* $1 */]]></text>
+    <tag>/</tag>
+    <description>comment_paragraph</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[else {
+	$1
+}]]></text>
+    <tag>else</tag>
+    <description>conditional_else</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[if ($1) { //$2
+	$0
+}]]></text>
+    <tag>if</tag>
+    <description>conditional_if</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[if ($1) { //$2
+	$3
+	} else { 
+	$4
+}
+]]></text>
+    <tag>ifelse</tag>
+    <description>conditional_if .. else</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[mouseButton == $0]]></text>
+    <tag>mbutton</tag>
+    <description>input_mouseButton</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[mouseClicked()]]></text>
+    <tag>mclick</tag>
+    <description>input_mouseClicked</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[mouseDragged()]]></text>
+    <tag>mdrag</tag>
+    <description>input_mouseDragged</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[mousePressed]]></text>
+    <tag>mpress</tag>
+    <description>input_mousePressed</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[mouseReleased()]]></text>
+    <tag>mrelease</tag>
+    <description>input_mouseReleased</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[mouseWheel()]]></text>
+    <tag>mwheel</tag>
+    <description>input_mouseWheel</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[mouseX]]></text>
+    <tag>mx</tag>
+    <description>input_mouseX</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[mouseY]]></text>
+    <tag>my</tag>
+    <description>input_mouseY</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[pmouseX]]></text>
+    <tag>pmx</tag>
+    <description>input_pmouseX</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[pmouseY]]></text>
+    <tag>pmy</tag>
+    <description>input_pmouseY</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[random($0)]]></text>
+    <tag>ran</tag>
+    <description>math_random</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[float $1 = $0;]]></text>
+    <description>primitives_float</description>
+    <tag>flo</tag>
+  </snippet>
+  <snippet>
+    <tag>inta</tag>
+    <description>primitives_int array</description>
+    <text><![CDATA[int[] $1 = {$0};]]></text>
+  </snippet>
+  <snippet>
+    <tag>intan</tag>
+    <description>primitives_int array new</description>
+    <text><![CDATA[int[] $1 = new int[$0];]]></text>
+  </snippet>
+  <snippet>
+    <text><![CDATA[int $1 = $0;]]></text>
+    <tag>int</tag>
+    <description>primitives_int</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[void draw() {
+	$0
+}]]></text>
+    <tag>draw</tag>
+    <description>structure_draw</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[void setup() {
+	$0	
+}]]></text>
+    <tag>setup</tag>
+    <description>structure_setup</description>
+  </snippet>
+  <snippet>
+    <tag>void</tag>
+    <description>structure_void</description>
+    <text><![CDATA[void $1 {
+	$0
+}]]></text>
+  </snippet>
+  <snippet>
+    <text><![CDATA[try {
+   $2
+} catch (${1:Exception} e) {
+   $3
+}$0]]></text>
+    <tag>tc</tag>
+    <description>try .. catch</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[try {
+   $2
+} catch (${1:Exception} e) {
+   $3
+} finally {
+   $4
+}$0]]></text>
+    <tag>tcf</tag>
+    <description>try .. catch .. finally</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[while ($1) { 
+   $0
+}]]></text>
+    <tag>while</tag>
+    <description>while statement</description>
+  </snippet>
+  <snippet>
+    <text><![CDATA[try {
+	$GEDIT_SELECTED_TEXT
+}
+catch (Exception e) {
+	${1:e.printStackTrace();}
+}
+$0]]></text>
+    <accelerator><![CDATA[<Shift><Alt>t]]></accelerator>
+    <description>Wrap Selection in Try/Catch</description>
+  </snippet>
+</snippets>

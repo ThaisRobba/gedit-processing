@@ -15,9 +15,29 @@ A set of files and configurations to enable gedit as a Processing IDE.
 
 Download this branch and extract it.
 
+*The Syntax Highlighting*:
+
 Put the _sourceview-3.0_ folder inside */home/_your-username_/.local/share/*
 
+*The Snippets*:
 
+Within Gedit, enable the _Snippets Completion_ plugin.
+Go to Tools >> Manage Snippets
+Click on the _Import Snippets_ button, select the Snippets.xml file and confirm.
+
+*Running Sketches within Gedit*:
+
+Within Gedit, go to plugins and enable _External Tools_.
+Go to Tools >> Manage External Tools
+Add a new entry with the following code:
+
+	#!/bin/sh
+	processing-java --sketch=$GEDIT_CURRENT_DOCUMENT_DIR --output=$GEDIT_CURRENT_DOCUMENT_DIR/run --run --force
+
+Note that if you have processing-java installed in a different folder than your system's default, you will need to change the script to:
+
+	#!/bin/sh
+	/path_to_processings_folder/processing-java --sketch=$GEDIT_CURRENT_DOCUMENT_DIR --output=$GEDIT_CURRENT_DOCUMENT_DIR/run --run --force
 
 
 ---
@@ -32,6 +52,7 @@ And hit tab, it will turn into:
 		rect();
 		
 With the caret within the parenthesis so that you can type the attributes you want.
+To see all the currently available snippets, go to the Snippet Manager.
 
 ---
 
@@ -49,3 +70,6 @@ If I tried to input a snippet within the first parameter I would get:
 		rect(mouseX
 		
 Due to this weird behavior, I thought it would be easier to type in the commas than to backtrack all the time.
+
+###I think something could be made a lot better than what you currently have!
+By all means, feel free to either fork this or submit patches, I'm all ears. :)
