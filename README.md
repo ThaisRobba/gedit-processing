@@ -54,7 +54,9 @@ Add a new entry with the following code:
 		rm $TMP_FILE_NAME
 	
 Set _Save_ to _Current Document_
+
 Set _Entry_ to _Nothing_
+
 Set _Output_ to _Replace Current Document_
 
 You might have to save before running it as it uses the saved file in the drive as source and for some users the plugin fails to save.
