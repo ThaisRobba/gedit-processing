@@ -15,17 +15,17 @@ A set of files and configurations to enable gedit as a Processing IDE.
 
 Download this branch and extract it.
 
-*The Syntax Highlighting*:
+**The Syntax Highlighting:**
 
 Put the _sourceview-3.0_ folder inside */home/_your-username_/.local/share/*
 
-*The Snippets*:
+**The Snippets**:
 
 Within Gedit, enable the _Snippets Completion_ plugin.
 Go to Tools >> Manage Snippets
 Click on the _Import Snippets_ button, select the _snippets.xml_ file and confirm.
 
-*Running Sketches within Gedit*:
+**Running Sketches within Gedit**:
 
 Within Gedit, go to plugins and enable _External Tools_.
 Go to Tools >> Manage External Tools
