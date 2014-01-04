@@ -23,7 +23,7 @@ Put the _sourceview-3.0_ folder inside */home/_your-username_/.local/share/*
 
 Within Gedit, enable the _Snippets Completion_ plugin.
 Go to Tools >> Manage Snippets
-Click on the _Import Snippets_ button, select the Snippets.xml file and confirm.
+Click on the _Import Snippets_ button, select the _snippets.xml_ file and confirm.
 
 *Running Sketches within Gedit*:
 
@@ -31,14 +31,33 @@ Within Gedit, go to plugins and enable _External Tools_.
 Go to Tools >> Manage External Tools
 Add a new entry with the following code:
 
-	#!/bin/sh
-	processing-java --sketch=$GEDIT_CURRENT_DOCUMENT_DIR --output=$GEDIT_CURRENT_DOCUMENT_DIR/run --run --force
+		#!/bin/sh
+		processing-java --sketch=$GEDIT_CURRENT_DOCUMENT_DIR --output=$GEDIT_CURRENT_DOCUMENT_DIR/run --run --force
 
 Note that if you have processing-java installed in a different folder than your system's default, you will need to change the script to:
 
-	#!/bin/sh
-	/path_to_processings_folder/processing-java --sketch=$GEDIT_CURRENT_DOCUMENT_DIR --output=$GEDIT_CURRENT_DOCUMENT_DIR/run --run --force
+		#!/bin/sh
+		/path_to_processings_folder/processing-java --sketch=$GEDIT_CURRENT_DOCUMENT_DIR --output=$GEDIT_CURRENT_DOCUMENT_DIR/run --run --force
 
+*Auto-Formating*:
+
+_Note that this requires you to have Vim installed in your system._
+
+Go to Tools >> Manage External Tools
+Add a new entry with the following code:
+
+		#!/bin/sh
+		CMD_FILE_NAME=.formatcommand;
+		TMP_FILE_NAME=.tempvimfile;
+		touch $CMD_FILE_NAME&&echo "gg=G :wq! "$TMP_FILE_NAME > $CMD_FILE_NAME&&(vim $GEDIT_CURRENT_DOCUMENT_NAME -s $CMD_FILE_NAME > /dev/null 2>/dev/null)&&rm $CMD_FILE_NAME;
+		cat $TMP_FILE_NAME
+		rm $TMP_FILE_NAME
+	
+Set _Save_ to _Current Document_
+Set _Entry_ to _Nothing_
+Set _Output_ to _Replace Current Document_
+
+You might have to save before running it as it uses the saved file in the drive as source and for some users the plugin fails to save.
 
 ---
 
