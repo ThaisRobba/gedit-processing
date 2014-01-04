@@ -92,3 +92,6 @@ Due to this weird behavior, I thought it would be easier to type in the commas t
 
 ###I think something could be made a lot better than what you currently have!
 By all means, feel free to either fork this or submit patches, I'm all ears. :)
+
+###Note on the Auto-Format code
+[Original Author](http://stackoverflow.com/questions/8245763/how-to-get-gedit-to-auto-indent-code)
