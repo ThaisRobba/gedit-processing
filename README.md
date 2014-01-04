@@ -15,7 +15,7 @@ A set of files and configurations to enable gedit as a Processing IDE.
 
 Download this branch and extract it.
 
-	Put the sourceview-3.0 folder inside /home/_your-username_/.local/share/
+Put the _sourceview-3.0_ folder inside */home/_your-username_/.local/share/*
 
 
 
