@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Author: Otto Robba <ottorobba@gmail.com>
+ Copyright (C) 2013 Otto Robba <ottorobba@gmail.com>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+<language id="processing" _name="Processing" version="2.0" _section="Sources">
+  <metadata>
+    <property name="mimetypes">text/x-pde</property>
+    <property name="globs">*.pde</property>
+    <property name="line-comment-start">//</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
+  </metadata>
+
+  <styles>
+    <style id="escaped-character" _name="Escaped Character"         map-to="def:special-char"/>
+    <style id="string"            _name="String"                    map-to="def:string"/>
+    <style id="char"              _name="Character"                 map-to="def:character"/>
+    <!-- Translators: refered to some specific keywords of the language that
+         allow to get external functionalities -->
+    <style id="external"          _name="External"                  map-to="def:preprocessor"/>
+    <style id="declaration"       _name="Declaration"               map-to="def:type"/>
+    <style id="storage-class"     _name="Storage Class"             map-to="def:type"/>
+    <style id="scope-declaration" _name="Scope Declaration"         map-to="def:type"/>
+    <style id="keyword"           _name="Keyword"                   map-to="def:keyword"/>
+    <style id="identifier"        _name="Identifier"                map-to="def:identifier"/>
+    <style id="null-value"        _name="Null Value"                map-to="def:special-constant"/>
+    <style id="boolean"           _name="Boolean value"             map-to="def:boolean"/>
+    <style id="number"            _name="Number"                    map-to="def:decimal"/>
+    <style id="reserved"          _name="Future Reserved Keywords"  map-to="def:reserved"/>
+    <style id="type"              _name="Data Type"                 map-to="def:type"/>
+  </styles>
+
+  <definitions>
+
+    <define-regex id="escaped-character" extended="true">
+      \\(               # leading backslash
+      [\\\"\'nrbtf] |   # escaped character
+      [0-9]{1,3}    |   # latin encoded char
+      u[0-9]{1,4}       # unicode char
+      )
+    </define-regex>
+
+    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context id="escaped-character" style-ref="escaped-character">
+          <match>\%{escaped-character}</match>
+        </context>
+      </include>
+    </context>
+
+   <context id="char" style-ref="char">
+     <match>'(\%{escaped-character}|.)'</match>
+   </context>
+
+    <context id="externals" style-ref="external">
+      <keyword>import</keyword>
+      <keyword>package</keyword>
+    </context>
+
+    <context id="declarations" style-ref="declaration">
+      <keyword>class</keyword>
+      <keyword>enum</keyword>
+      <keyword>extends</keyword>
+      <keyword>implements</keyword>
+      <keyword>instanceof</keyword>
+      <keyword>interface</keyword>
+      <keyword>native</keyword>
+      <keyword>throws</keyword>
+    </context>
+
+    <context id="processing-data" style-ref="type">
+      <keyword>boolean</keyword>
+      <keyword>byte</keyword>
+      <keyword>char</keyword>
+      <keyword>double</keyword>
+      <keyword>float</keyword>
+      <keyword>int</keyword>
+      <keyword>long</keyword>
+      <keyword>short</keyword>
+      <keyword>void</keyword>
+      <keyword>binary</keyword>
+      <keyword>hex</keyword>
+      <keyword>unhex</keyword>
+      <keyword>unbinary</keyword>
+      <keyword>str</keyword>
+      <keyword>Array</keyword>
+      <keyword>ArrayList</keyword>
+      <keyword>FloatDict</keyword>
+      <keyword>FloatList</keyword>
+      <keyword>HashMap</keyword>
+      <keyword>IntDict</keyword>
+      <keyword>IntList</keyword>
+      <keyword>JSONArray</keyword>
+      <keyword>JSONObject</keyword>
+      <keyword>Object</keyword>
+      <keyword>String</keyword>
+      <keyword>StringDict</keyword>
+      <keyword>StringList</keyword>
+      <keyword>Table</keyword>
+      <keyword>XML</keyword>
+      <keyword>TableRow</keyword>
+      <keyword>join</keyword>
+      <keyword>match</keyword>
+      <keyword>matchAll</keyword>
+      <keyword>nf</keyword>
+      <keyword>nfc</keyword>
+      <keyword>nfp</keyword>
+      <keyword>nfs</keyword>
+      <keyword>split</keyword>
+      <keyword>splitTokens</keyword>
+      <keyword>trim</keyword>
+      <keyword>append</keyword>
+      <keyword>arrayCopy</keyword>
+      <keyword>concat</keyword>
+      <keyword>expand</keyword>
+      <keyword>reverse</keyword>
+      <keyword>shorten</keyword>
+      <keyword>sort</keyword>
+      <keyword>splice</keyword>
+      <keyword>subset</keyword>
+    </context>
+
+    <context id="storage-class" style-ref="storage-class">
+      <keyword>abstract</keyword>
+      <keyword>final</keyword>
+      <keyword>static</keyword>
+      <keyword>strictfp</keyword>
+      <keyword>synchronized</keyword>
+      <keyword>transient</keyword>
+      <keyword>volatile</keyword>
+    </context>
+
+    <context id="scope-declarations" style-ref="scope-declaration">
+      <keyword>private</keyword>
+      <keyword>protected</keyword>
+      <keyword>public</keyword>
+    </context>
+
+    <context id="flow" style-ref="external">
+      <keyword>assert</keyword>
+      <keyword>break</keyword>
+      <keyword>case</keyword>
+      <keyword>catch</keyword>
+      <keyword>continue</keyword>
+      <keyword>default</keyword>
+      <keyword>do</keyword>
+      <keyword>else</keyword>
+      <keyword>finally</keyword>
+      <keyword>for</keyword>
+      <keyword>if</keyword>
+      <keyword>return</keyword>
+      <keyword>throw</keyword>
+      <keyword>switch</keyword>
+      <keyword>try</keyword>
+      <keyword>while</keyword>
+    </context>
+    
+  <!--  <context id="conditionals" style-ref="external">
+         <match extended="true">
+         ==
+        &&
+         ||
+         </match>
+
+    </context>-->
+
+    <context id="memory" style-ref="keyword">
+      <keyword>new</keyword>
+      <keyword>super</keyword>
+      <keyword>this</keyword>
+    </context>
+
+    <context id="future-reserved-words" style-ref="reserved">
+      <keyword>const</keyword>
+      <keyword>goto</keyword>
+    </context>
+
+    <context id="null-value" style-ref="null-value">
+      <keyword>null</keyword>
+    </context>
+
+    <context id="boolean" style-ref="boolean">
+      <keyword>false</keyword>
+      <keyword>true</keyword>
+    </context>
+
+    <context id="numeric" style-ref="number">
+      <match extended="true">
+        (\b([0-9]+|0[xX][0-9a-fA-F]+)[Ll]?\b|
+         \b(([0-9]+[Ee][-]?[0-9]+|
+            ([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFdD]?|
+            [0-9]+[FfDd]))
+      </match>
+    </context>
+
+    <context id="PI" style-ref="number">
+	 <keyword>HALF_PI</keyword>
+      <keyword>PI</keyword>
+      <keyword>QUARTER_PI</keyword>
+  	 <keyword>TAU</keyword>
+  	 <keyword>TWO_PI</keyword>
+    </context>
+    
+    <context id="processing-structure" style-ref="keyword">
+      <keyword>setup</keyword>
+      <keyword>draw</keyword>
+      <keyword>exit</keyword>
+      <keyword>noLoop</keyword>
+      <keyword>redraw</keyword>
+      <keyword>popStyle</keyword>
+      <keyword>pushStyle</keyword>
+      <keyword>loop</keyword>
+    </context>
+    
+    <context id="processing-environment" style-ref="identifier">
+      <keyword>cursor</keyword>
+      <keyword>displayHeight</keyword>
+      <keyword>displayWidth</keyword>
+      <keyword>focused</keyword>
+      <keyword>frameCount</keyword>
+      <keyword>frameRate</keyword>
+      <keyword>height</keyword>
+      <keyword>noCursor</keyword>
+      <keyword>size</keyword>
+      <keyword>width</keyword>
+    </context>    
+
+    <context id="processing-input" style-ref="identifier">
+      <keyword>mouseX</keyword>
+      <keyword>mouseY</keyword>
+      <keyword>mousePressed</keyword>
+      <keyword>keyPressed</keyword>
+      <keyword>keyReleased</keyword>
+      <keyword>mouseButton</keyword>
+      <keyword>key</keyword>
+      <keyword>pmouseX</keyword>
+      <keyword>pmouseY</keyword>
+      <keyword>mouseClicked</keyword>
+      <keyword>keyCode</keyword>
+      <keyword>mouseReleased</keyword>
+      <keyword>mouseWheel</keyword>
+      <keyword>keyTyped</keyword>
+      <keyword>mouseMoved</keyword>
+      <keyword>mouseDragged</keyword>
+      <keyword>BufferedReader</keyword>
+      <keyword>createInput</keyword>
+      <keyword>createReader</keyword>
+      <keyword>loadBytes</keyword>
+      <keyword>loadJSONArray</keyword>
+      <keyword>loadJSONObject</keyword>
+      <keyword>loadStrings</keyword>
+      <keyword>loadTable</keyword>
+      <keyword>loadXML</keyword>
+      <keyword>open</keyword>
+      <keyword>parseXML</keyword>
+      <keyword>selectFolder</keyword>
+      <keyword>selectInput</keyword>
+      <keyword>day</keyword>
+      <keyword>hour</keyword>
+      <keyword>millis</keyword>
+      <keyword>minute</keyword>
+      <keyword>month</keyword>
+      <keyword>second</keyword>
+      <keyword>year</keyword>
+    </context>
+    
+    <context id="processing-output" style-ref="identifier">
+      <keyword>print</keyword>
+      <keyword>printArray</keyword>
+      <keyword>println</keyword>
+      <keyword>save</keyword>
+      <keyword>saveFrame</keyword>
+      <keyword>beginRaw</keyword>
+      <keyword>beginRecord</keyword>
+      <keyword>createOutput</keyword>
+      <keyword>createWriter</keyword>
+      <keyword>endRaw</keyword>
+      <keyword>endRecord</keyword>
+      <keyword>PrintWriter</keyword>
+      <keyword>saveBytes</keyword>
+      <keyword>saveJSONArray</keyword>
+      <keyword>saveJSONObject</keyword>
+      <keyword>saveStream</keyword>
+      <keyword>saveStrings</keyword>
+      <keyword>saveTable</keyword>
+      <keyword>saveXML</keyword>
+      <keyword>selectOutput</keyword>
+    </context>
+    
+    <context id="processing-transform" style-ref="identifier">
+      <keyword>applyMatrix</keyword>
+      <keyword>popMatrix</keyword>
+      <keyword>printMatrix</keyword>
+      <keyword>pushMatrix</keyword>
+      <keyword>resetMatrix</keyword>
+      <keyword>rotate</keyword>
+      <keyword>rotateX</keyword>
+      <keyword>rotateY</keyword>
+      <keyword>rotateZ</keyword>
+      <keyword>scale</keyword>
+      <keyword>shearX</keyword>
+      <keyword>shearY</keyword>
+      <keyword>translate</keyword>
+    </context>
+
+    <context id="processing-light" style-ref="identifier">
+      <keyword>ambientLight</keyword>
+      <keyword>directionalLight</keyword>
+      <keyword>lightFalloff</keyword>
+      <keyword>lights</keyword>
+      <keyword>lightSpecular</keyword>
+      <keyword>noLights</keyword>
+      <keyword>normal</keyword>
+      <keyword>pointLight</keyword>
+      <keyword>spotLight</keyword>
+      <keyword>beginCamera</keyword>
+      <keyword>camera</keyword>
+      <keyword>endCamera</keyword>
+      <keyword>frustum</keyword>
+      <keyword>ortho</keyword>
+      <keyword>perspective</keyword>
+      <keyword>printCamera</keyword>
+      <keyword>printProjection</keyword>
+      <keyword>modelX</keyword>
+      <keyword>modelY</keyword>
+      <keyword>modelZ</keyword>
+      <keyword>screenX</keyword>
+      <keyword>screenY</keyword>
+      <keyword>screenZ</keyword>
+      <keyword>ambient</keyword>
+      <keyword>emissive</keyword>
+      <keyword>shininess</keyword>
+      <keyword>specular</keyword>
+    </context>
+
+    <context id="processing-image" style-ref="identifier">
+      <keyword>createImage</keyword>
+      <keyword>PImage</keyword>
+      <keyword>image</keyword>
+      <keyword>imageMode</keyword>
+      <keyword>loadImage</keyword>
+      <keyword>noTint</keyword>
+      <keyword>requestImage</keyword>
+      <keyword>tint</keyword>
+      <keyword>texture</keyword>
+      <keyword>textureMode</keyword>
+      <keyword>textureWrap</keyword>
+      <keyword>blend</keyword>
+      <keyword>copy</keyword>
+      <keyword>filter</keyword>
+      <keyword>get</keyword>
+      <keyword>loadPixels</keyword>
+      <keyword>pixels</keyword>
+      <keyword>set</keyword>
+      <keyword>updatePixels</keyword>
+    </context>
+
+    <context id="processing-rendering" style-ref="external">
+      <keyword>blendMode</keyword>
+      <keyword>createGraphics</keyword>
+      <keyword>PGraphics</keyword>
+      <keyword>loadShader</keyword>
+      <keyword>PShader</keyword>
+      <keyword>resetShader</keyword>
+      <keyword>shader</keyword>
+    </context>
+
+    <context id="processing-color" style-ref="identifier">
+      <keyword>background</keyword>
+      <keyword>clear</keyword>
+      <keyword>colorMode</keyword>
+      <keyword>fill</keyword>
+      <keyword>noFill</keyword>
+      <keyword>noStroke</keyword>
+      <keyword>stroke</keyword>
+      <keyword>alpha</keyword>
+      <keyword>blue</keyword>
+      <keyword>brightness</keyword>
+      <keyword>green</keyword>
+      <keyword>hue</keyword>
+      <keyword>lerpColor</keyword>
+      <keyword>color</keyword>
+      <keyword>red</keyword>
+      <keyword>saturation</keyword>
+    </context>
+
+    <context id="processing-typography" style-ref="identifier">
+      <keyword>PFont</keyword>
+      <keyword>createFont</keyword>
+      <keyword>loadFont</keyword>
+      <keyword>text</keyword>
+      <keyword>textFont</keyword>
+      <keyword>textAlign</keyword>
+      <keyword>textLeading</keyword>
+      <keyword>textMode</keyword>
+      <keyword>textSize</keyword>
+      <keyword>textWidth</keyword>
+      <keyword>textAscent</keyword>
+      <keyword>textDescent</keyword>
+    </context>
+
+    <context id="processing-shapes" style-ref="identifier">
+      <keyword>createShape</keyword>
+      <keyword>loadShape</keyword>
+      <keyword>PShape</keyword>
+      <keyword>rect</keyword>
+      <keyword>triangle</keyword>
+      <keyword>quad</keyword>
+      <keyword>line</keyword>
+      <keyword>ellipse</keyword>
+      <keyword>point</keyword>
+      <keyword>arc</keyword>
+      <keyword>quad</keyword>
+      <keyword>bezier</keyword>
+      <keyword>bezierDetail</keyword>
+      <keyword>bezierPoint</keyword>
+      <keyword>bezierTangent</keyword>
+      <keyword>curve</keyword>
+      <keyword>curveDetail</keyword>
+      <keyword>curvePoint</keyword> 
+      <keyword>curveTangent</keyword>
+      <keyword>curveTightness</keyword>    
+      <keyword>box</keyword> 
+      <keyword>sphere</keyword>
+      <keyword>sphereDetail</keyword>       
+      <keyword>ellipseMode</keyword> 
+      <keyword>noSmooth</keyword> 
+      <keyword>rectMode</keyword> 
+      <keyword>smooth</keyword> 
+      <keyword>strokeCap</keyword> 
+      <keyword>strokeJoin</keyword> 
+      <keyword>strokeWeight</keyword> 
+      <keyword>beginContour</keyword> 
+      <keyword>beginShape</keyword> 
+      <keyword>bezierVertex</keyword>
+      <keyword>curveVertex</keyword> 
+      <keyword>endContour</keyword> 
+      <keyword>endShape</keyword> 
+      <keyword>quadraticVertex</keyword> 
+      <keyword>vertex</keyword>
+      <keyword>shape</keyword>
+      <keyword>shapeMode</keyword>
+    </context>
+    
+    <context id="processing-math" style-ref="keyword">
+      <keyword>PVector</keyword>
+      <keyword>abs</keyword>
+      <keyword>ceil</keyword>
+      <keyword>constrain</keyword>
+      <keyword>dist</keyword>
+      <keyword>exp</keyword>
+      <keyword>floor</keyword>
+      <keyword>lerp</keyword>
+      <keyword>log</keyword>
+      <keyword>mag</keyword>
+      <keyword>map</keyword>
+      <keyword>max</keyword>
+      <keyword>min</keyword>
+      <keyword>norm</keyword>
+      <keyword>pow</keyword>
+      <keyword>round</keyword>
+      <keyword>sq</keyword>
+      <keyword>sqrt</keyword>
+      <keyword>acos</keyword>
+      <keyword>asin</keyword>
+      <keyword>atan</keyword>
+      <keyword>atan2</keyword>
+      <keyword>cos</keyword>
+      <keyword>degrees</keyword>
+      <keyword>radians</keyword>
+      <keyword>sin</keyword>
+      <keyword>tan</keyword>
+      <keyword>noise</keyword>
+      <keyword>noiseDetail</keyword>
+      <keyword>noiseSeed</keyword>
+      <keyword>random</keyword>
+      <keyword>randomGaussian</keyword>
+      <keyword>randomSeed</keyword>
+    </context>
+
+    <context id="processing" class="no-spell-check">
+      <include>
+        <context ref="string"/>
+        <context ref="char"/>
+        <context ref="def:c-like-comment"/>
+        <context ref="def:c-like-comment-multiline"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="externals"/>
+        <context ref="declarations"/>
+        <context ref="processing-data"/>
+        <context ref="storage-class"/>
+        <context ref="scope-declarations"/>
+        <context ref="flow"/>
+        <context ref="memory"/>
+        <context ref="future-reserved-words"/>
+        <context ref="null-value"/>
+        <context ref="boolean"/>
+        <context ref="numeric"/>
+        <context ref="PI"/>
+        <context ref="processing-structure"/>
+        <context ref="processing-shapes"/>
+        <context ref="processing-input"/>
+        <context ref="processing-output"/>
+        <context ref="processing-environment"/>
+        <context ref="processing-transform"/>
+        <context ref="processing-color"/>
+        <context ref="processing-light"/>
+        <context ref="processing-image"/>
+        <context ref="processing-rendering"/>
+        <context ref="processing-typography"/>
+        <context ref="processing-math"/>
+        <context ref="conditionals"/>
+      </include>
+    </context>
+
+  </definitions>
+</language>
