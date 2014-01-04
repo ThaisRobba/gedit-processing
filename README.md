@@ -12,7 +12,12 @@ A set of files and configurations to enable gedit as a Processing IDE.
 
 ---
 ###How do I install it?
-Information still pending.
+
+Download this branch and extract it.
+
+	Put the sourceview-3.0 folder inside /home/_your-username_/.local/share/
+
+
 
 
 ---
